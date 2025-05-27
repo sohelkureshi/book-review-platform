@@ -1,0 +1,22 @@
+<%- include('./partials/header.ejs') %>
+
+<div class="login-register">
+    <form action="/register" method="post">
+        <label for="first-name">First Name</label>
+        <input id="first-name" type="text" required name="first">
+        <label for="last-name">Last Name</label>
+        <input id="last-name" type="text" name="last">
+        <label for="email">Email</label>
+        <input id="email" type="email" required name="email">
+        <label for="password">Password</label>
+        <input id="password" type="password" required name="password">
+        <input class="edit-button" type="submit" value="Sign up">
+        <span>Already registered? <a href="/login">Login</a></span>
+
+        <% if (locals.message) { %>
+            <div><%- message %></div>
+        <% } %>
+    </form>
+</div>
+
+<%- include('./partials/footer.ejs') %>

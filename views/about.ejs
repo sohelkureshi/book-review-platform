@@ -1,0 +1,55 @@
+<%- include('./partials/header.ejs') %>
+
+    <link rel="stylesheet" href="/style/about.css" />
+
+    <div class="features-section">
+    <h2>🚀 Platform Features</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>🔐 User Authentication</h3>
+            <p>Sign up and log in securely with JWT-based authentication to keep your account safe.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📚 Book Management</h3>
+            <p>Add new books, browse all available titles, and filter by author or genre. Pagination ensures smooth navigation.</p>
+        </div>
+        <div class="feature-card">
+            <h3>📝 Review System</h3>
+            <p>Write, update, or delete your own reviews. See average ratings and what others have to say about each book.</p>
+        </div>
+        <div class="feature-card">
+            <h3>🔎 Powerful Search</h3>
+            <p>Find books easily with our case-insensitive search by title or author—never miss a great read!</p>
+        </div>
+    </div>
+</div>
+
+<div class="api-section">
+    <h2>💻 Under the Hood: Book Review API</h2>
+    <p>
+        SK@VNIT Books is powered by a robust RESTful API built with <strong>Node.js</strong> and <strong>Express.js</strong>. Here’s what makes our backend tick:
+    </p>
+    <ul class="api-list">
+        <li><strong>POST /signup</strong> – Register a new user</li>
+        <li><strong>POST /login</strong> – Authenticate and receive a JWT token</li>
+        <li><strong>POST /books</strong> – Add a new book (for authenticated users)</li>
+        <li><strong>GET /books</strong> – List all books with pagination and filters</li>
+        <li><strong>GET /books/:id</strong> – View detailed book info, average rating, and reviews</li>
+        <li><strong>POST /books/:id/reviews</strong> – Submit a review (one per user per book)</li>
+        <li><strong>PUT /reviews/:id</strong> – Update your review</li>
+        <li><strong>DELETE /reviews/:id</strong> – Delete your review</li>
+        <li><strong>GET /search</strong> – Search books by title or author</li>
+    </ul>
+    <p>
+        <em>Built with security, performance, and user experience in mind!</em>
+    </p>
+</div>
+
+<div class="cta-section">
+    <h2>Ready to Start Your Reading Adventure?</h2>
+    <p>
+        Sign up, explore our library, and let your reviews inspire fellow book lovers. Happy reading! 📖✨
+    </p>
+</div>
+
+    <%- include('./partials/footer.ejs') %>

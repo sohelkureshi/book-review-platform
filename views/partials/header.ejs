@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Reviews</title>
+    <link rel="stylesheet" href="/style/styles.css">
+    <link rel="shortcut icon" href="/assets/book_icon2.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <div class="menu">
+            <a href="/"><img class="logo" src="/assets/book_icon.png" alt="Logo"></a>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/new-review">Review</a></li>
+                <li><a href="/about">About</a></li>
+                <% if (!user) { %>
+                    <li id="login"><a href="/register">Signup</a></li>
+                <% } else { %>
+                    
+                    <li id="logout"><a href="/logout">Logout</a></li>
+                    <li style="color: #fff; font-weight: 500; margin-left: 1rem;">
+                        Hi <%= user.firstname %>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+
+        <div class="search">
+            <form action="/s" method="post" id="search-form">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+                <input type="search" required name="search" value="<%= typeof searchTerm !== 'undefined' ? searchTerm : '' %>" id="search-input" placeholder="Search">
+            </form>
+        </div>
+    </header>
+<script>
+      let isInternalNavigation = false;
+
+      document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          isInternalNavigation = true;
+        });
+      });
+
+      window.addEventListener("beforeunload", (event) => {
+        if (!isInternalNavigation) {
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon("/immediate-logout");
+          } else {
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "/immediate-logout", false);
+            xhr.withCredentials = true;
+            xhr.send();
+          }
+        }
+        isInternalNavigation = false;
+      });
+    </script>
+
+

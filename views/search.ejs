@@ -1,0 +1,48 @@
+<%- include('./partials/header.ejs') %>
+
+    <hero>
+        <div class="container">
+            <h1>
+                <% if (totalResult === 0) { %>
+                    <span class="oops">Oops! We couldn't find what you are looking for, try again, maybe?</span>
+                <% }else if(totalResult === 1) { %>
+                    We found just <span class="result"><%= totalResult %></span> result for '<%= searchTerm %>'
+                <% }else { %>
+                    We found <span class="result"><%= totalResult %></span> results for '<%= searchTerm %>'
+                <% } %>
+            </h1>
+        </div>
+    </hero>
+
+    <main class="books">
+        <% book.forEach((book) => { %>
+            
+            <div class="cards">
+                <img src="https://covers.openlibrary.org/b/isbn/<%= book.isbn %>-L.jpg" alt="<%= book.title %>">
+                <div class="genre"><%= book.genre %></div>
+                <div class="cards-inner">
+                    <span class="book-title"><%= book.title %></span>
+                    <span class="book-author">By: <%= book.author %></span>
+                </div>
+                <input type="hidden" id="<%= book.id %>">
+
+                    <div class="rating" title="Average: <%= book.averageRating ? book.averageRating.toFixed(1) : 'N/A' %>">
+                        <% 
+                            const avg = book.averageRating || 0;
+                            for (let i = 1; i <= 5; i++) { 
+                        %>
+                            <span class="star" style="color:<%= i <= Math.round(avg) ? '#f39c12' : '#ccc' %>;">★</span>
+                        <% } %>
+                        <span class="review-count">
+                            (<%= book.reviews ? book.reviews.length : 0 %> reviews)
+                        </span>
+                    </div>
+
+
+                <a href="/book/<%= book.id %>/<%= book.title.replace(/\s+/g, '-') %>"><button >Read Reviews</button></a>
+            </div>
+
+        <% }) %>
+        </main>
+
+    <%- include('./partials/footer.ejs') %>

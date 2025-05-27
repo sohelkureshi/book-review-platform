@@ -1,0 +1,23 @@
+<%- include('./partials/header.ejs') %>
+
+    <div class="login-register">
+        <form action="/login" method="post">
+            <label for="email">Email</label>
+            <input id="email" type="email" required name="email">
+            <label for="password">Password</label>
+            <input id="password" type="password" required name="password">
+            <input class="edit-button" type="submit" value="Login">
+            <span>New user? <a href="/register">Register</a></span>
+
+            <% if (locals.message) { %>
+                
+                <div><%= message%></div>
+
+            <%}%>
+            <!-- <a class="google" href="/auth/google"><img src="/assets/bootstrap-icons/icons/google.svg" alt="google">Sign in with Google</a> -->
+        </form>
+
+        
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
